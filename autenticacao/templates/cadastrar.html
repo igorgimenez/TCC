@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>  
+<html lang="pt-br">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Cadastrar - Worldx</title>  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="media/css/autenticacao/cadastro_style.css">
+
+</head>  
+<body>  
+
+    <nav class="navbar navbar-expand-lg navbar-light"> 
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            
+            <span class="navbar-toggler" style="color:white;">Worldx</span>
+
+           
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto  ">
+                    <a class="nav-link "  style="color:white ; font-weight: bold;" href="/"><li style="color: whitesmoke ; font-weight: bold;  font-size: 1.8em ;" >Worldx</li></a>
+                </ul>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:white ; font-weight: bold;" href="/login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div id="card" class="card align-middle">
+        <div class="card-body">
+          <h5 class="card-title">Cadastro</h5>
+
+
+          <form method="POST" class="post-form" action="/cadastrar" >
+            {% csrf_token %}  
+
+            <div class="campo" >
+                <input type="text" class="form-control" placeholder="Nome"  name="nome" id="nome" style="border-radius: 25px;">
+            </div>
+            <div class="campo">
+                <input type="text" class="form-control" placeholder="CPF"  name="cpf" id="cpf" oninput="mascara(this, 'cpf')"  autocomplete="off" name="customer['cpf']" style="border-radius: 25px;">
+            </div>
+            <div class="campo">
+                <input type="text" class="form-control" placeholder="Telefone" name="telefone" id="telefone" oninput="mascara(this, 'tel')"  autocomplete="off" name="customer['tel']" style="border-radius: 25px;">
+            </div>
+
+            <div class="campo" >
+                <input type="text" class="form-control" placeholder="Data de Nascimento" name="data_nascimento" id="data_nascimento" oninput="mascara(this, 'data')"  autocomplete="off" name="customer['birthdate']" style="border-radius: 25px;">
+            </div>
+
+            <div class="campo">
+                <input type="email" class="form-control" placeholder="Email" name="email" id="email" style="border-radius: 25px;">
+                
+            </div>
+
+            <div class="campo" >
+                <input type="text" class="form-control" placeholder="Usuario" name="usuario" id="usuario" style="border-radius: 25px;">
+            </div>
+
+            <div class="campo">
+                <div class="input-group mb-3">
+                    <div class="form-check" style="margin-top: 10px;">
+                        <input class="form-check-input" type="checkbox" id="privatochk" onclick="myFunction()">
+                        <label class="form-check-label" for="privatochk">
+                            Privado
+                        </label>
+                      </div>
+                      <div class="form-check" style="margin-top: 10px; margin-left: 10px;">
+                        <input class="form-check-input" type="checkbox" id="publicochk" onclick="myFunction()">
+                        <label class="form-check-label" for="publicochk">
+                            Publico
+                        </label>
+                      </div>
+                    <input type="hidden" id="publico" name="publico">
+                </div>
+            </div>
+
+            <div class="campo">
+                <input type="password" class="form-control" placeholder="Senha" id="senha" name="senha" id="senha" style="border-radius: 25px;">
+            </div>
+
+            <div class="campo">
+                <input type="password" class="form-control" placeholder="Confirmar Senha"  id="confirmasenha" name="confirmasenha" id="confirmasenha" onChange="email()" style="border-radius: 25px;">  
+            </div>
+
+            <p>{{ error }}</p>
+
+            <div class="divBtn">  
+                 
+                <button type="submit" class="btn btn-primary" id="btn">Criar</button>
+
+            </div>
+               
+
+          </form>
+        </div>
+
+        
+      </div>
+    
+    
+        
+
+    
+
+
+
+</body>  
+
+<script type="text/javascript">  
+
+
+function mascara(i,t){
+   
+   var v = i.value;
+   
+   if(isNaN(v[v.length-1])){
+      i.value = v.substring(0, v.length-1);
+      return;
+   }
+   
+   if(t == "data"){
+      i.setAttribute("maxlength", "10");
+      if (v.length == 2 || v.length == 5) i.value += "/";
+   }
+
+   if(t == "cpf"){
+      i.setAttribute("maxlength", "14");
+      if (v.length == 3 || v.length == 7) i.value += ".";
+      if (v.length == 11) i.value += "-";
+   }
+
+
+   if(t == "tel"){
+    if (v.length == 1) i.value = "(" + i.value;
+  if (v.length == 3) i.value += ") ";
+  if(v[5] == 9){
+     i.setAttribute("maxlength", "15");
+     if (v.length == 10) i.value += "-";
+  }else{
+     i.setAttribute("maxlength", "14");
+     if (v.length == 9) i.value += "-";
+  }
+}
+
+}
+
+
+
+
+
+
+
+
+var intervalId = window.setInterval(function(){
+    var  nome_input = document.getElementById("nome");
+    var cpf_input = document.getElementById("cpf");
+    var telefone_input = document.getElementById("telefone");
+    var data_nascimento_input = document.getElementById("data_nascimento");
+    var usuario_input = document.getElementById("usuario");
+    var email_input = document.getElementById("email");
+    var senha_input = document.getElementById("senha");
+    var confirmasenha_input = document.getElementById("confirmasenha");
+    var senha =  document.getElementById("senha").value;
+    var confirmasenha =  document.getElementById("confirmasenha").value;
+    var checkBoxPrivado = document.getElementById("privatochk");
+    var checkBoxPublico = document.getElementById("publicochk");
+
+    
+    var nome=0;
+    var cpf=0;
+    var tel=0;
+    var usuario=0;
+    var dat=0;
+    var email=0;
+    var chk=0;
+    
+
+        
+
+    if(nome_input.value.length > 0){
+        nome=1;  
+    }
+    if(cpf_input.value.length == 14 ){
+        cpf=1;  
+    }
+    if(telefone_input.value.length > 13 ){
+        tel=1;  
+    }
+    if(data_nascimento_input.value.length == 10 ){
+        dat=1;  
+    }
+    if(usuario_input.value.length > 0 ){
+        usuario=1;  
+    }
+    if(email_input.value.length > 0 ){
+        email=1;  
+    }
+    if(senha_input.value.length > 0 ){
+        email=1;  
+    }
+
+    if(checkBoxPrivado.checked == true){
+        chk=1;
+    }
+    if(checkBoxPublico.checked){
+        chk=1;
+    }
+
+    
+   if(nome==1 && cpf==1 && tel==1 && dat==1 && usuario==1 && email==1 && chk==1){
+    
+   
+    $('#senha, #confirmasenha').on('keyup', function () {
+                if ($('#senha').val() == $('#confirmasenha').val()) {
+                    $('#lb_confirmasenha').css('color', 'green');
+                    $('#lb_confirmasenha').html('Confirmar SENHA').css('color', 'green');
+                        
+                document.getElementById("btn").disabled = false;
+                
+        } else 
+            $('#lb_confirmasenha').html('Confirmar SENHA').css('color', 'red');
+        });
+    
+        
+   }
+    else{
+        document.getElementById("btn").disabled = true;   
+    }
+    }, 1000);
+
+
+function myFunction() {
+  // Get the checkbox
+  var checkBoxPrivado = document.getElementById("privatochk");
+  var checkBoxPublico = document.getElementById("publicochk");
+  // Get the output text
+  var tipo  = document.getElementById("publico");
+
+
+  // If the checkbox is checked, display the output text
+  if (checkBoxPrivado.checked == true){
+    tipo.value= "Privado";
+    checkBoxPublico.checked=false;
+    
+  }
+  if (checkBoxPublico.checked == true){
+    tipo.value= "Publico";
+    checkBoxPrivado.checked=false;
+   
+  } 
+}
+
+
+
+
+
+    
+    </script>
+</html>  

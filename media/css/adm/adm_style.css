@@ -1,0 +1,4 @@
+body,nav{
+    background: rgb(123,67,151);
+    background: linear-gradient(90deg, rgba(123,67,151,1) 0%, rgba(220,36,48,1) 100%);
+}

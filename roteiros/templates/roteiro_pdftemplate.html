@@ -1,0 +1,31 @@
+<h1 style="text-align: center;">Roteiro</h1>
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        
+        <th>Dia</th>
+        <th>Horario inicial</th>
+        <th>Horario final</th>
+        <th>Lugar</th>
+        <th>Atividade</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      {% for roteiro in filter.qs %}
+        <tr>
+          
+          <td style="text-align: center;">{{ roteiro.dia }}</td>
+          <td style="text-align: center;">{{roteiro.horario_inicial|date:'H:i'  }}</td>
+          <td style="text-align: center;">{{roteiro.horario_final|date:'H:i' }}</td>
+          <td style="text-align: center;">{{roteiro.lugar   }}</td>
+          <td style="text-align: center;">{{ roteiro.acao }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">Sem dados</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>

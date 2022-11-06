@@ -1,0 +1,17 @@
+body,nav{
+    background: rgb(0,98,251);
+    background: linear-gradient(90deg, rgba(0,98,251,1) 0%, rgba(119,184,228,1) 49%);
+}
+#card{
+    background:#f5f1f1; border-radius: 25px; width: 50%; margin-left: auto; margin-right: auto;
+}
+ h5{
+text-align: center; color: #3c86fc; font-size: 40px;
+}
+.campo{
+    margin-top: 10px;
+}
+.divBtn{
+margin-top: 10px; text-align: center;
+
+}

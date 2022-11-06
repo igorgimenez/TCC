@@ -1,0 +1,102 @@
+<!DOCTYPE html>  
+<html lang="pt-br">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Galeria - Worldx</title>  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/media/css/galeria/galerias_style.css">
+   
+
+</head>  
+<body>  
+
+
+    
+   	
+	 <nav class="navbar navbar-expand-lg navbar-light" > 
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Exibe Worldx quando estiver com tela de celular-->
+            <span class="navbar-toggler" style="color:white;">Worldx</span>
+
+            <!-- Elementos Esquerda-->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto  ">
+                    <a class="nav-link "  style="color:white ; font-weight: bold;" href="/home"><li style="color: whitesmoke ; font-weight: bold;  font-size: 1.8em ;" >Worldx</li></a>
+                </ul>
+            </div>
+
+            <!-- Elementos Direita -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link " id="viagem" style="color:white ; font-weight: bold;" href="#">Comunidade</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " id="viagem" style="color:white ; font-weight: bold;" href="/viagens">Viagens</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:white ; font-weight: bold;" href="/forum">Fórum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " id="viagem" style="color:white ; font-weight: bold;" href="/usuario">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="color:white ; font-weight: bold;" href="/logout">{{ request.session.user }}, Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    {% for msg in messages %}
+
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        {{ msg }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    
+    
+    {% endfor %}
+    
+
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+        {% for galeria in galeria %}  
+    
+        <div class="col-auto">
+        <div class="card" style="width: 18rem;  margin-top: 20px;">
+           
+            <div class="card-body">
+              <p class="card-text">{{ galeria.nome }}</p>
+              <p class="card-text">
+                <a class="btn btn-primary" href="/fotos_galeria/{{galeria.id}}"><span class="glyphicon glyphicon-pencil" >Ver</span></a>
+                <a class="btn btn-warning" href="/editargaleria/{{ galeria.id }}"><span class="glyphicon glyphicon-pencil" >Editar</span></a>
+                <a class="btn btn-danger" href="/excluirgaleria/{{ galeria.id }}">Excluir</a>
+              </p>
+              
+            </div>
+          </div>
+        </div>
+    
+          {% endfor %}  
+        </div>
+    </div>
+    
+    
+    <div class="text-center mt-5">
+        <a class="btn btn-primary" href="/nova_galeria/{{ v_id }}">Adicionar Galeria</a>
+    </div>
+    
+
+
+</body>  
+</html>  
