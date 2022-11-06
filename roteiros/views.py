@@ -1,4 +1,4 @@
-from ctypes import HRESULT
+# from ctypes import HRESULT
 from django.shortcuts import render
 
 # Create your views here.
