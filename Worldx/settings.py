@@ -14,10 +14,8 @@ from pathlib import Path
 
 import os
 import django_heroku
-import urlparse
-import sys
 
-urlparse.uses_netloc.append('mysql')
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -101,40 +99,21 @@ CHANNEL_LAYERS = {
     }
 }
 
-try:
-
-    # Check to make sure DATABASES is set in settings.py file.
-    # If not default to {}
-
-    if 'DATABASES' not in locals():
-        DATABASES = {}
-
-    if 'DATABASE_URL' in os.environ:
-        url = urlparse.urlparse(os.environ['DATABASE_URL'])
-
-        # Ensure default database exists.
-        DATABASES['default'] = DATABASES.get('default', {})
-
-        # Update with environment configuration.
-        DATABASES['default'].update({
-             'NAME': 'heroku_7cfd3b9fc33af31',  
-                'USER':'b8c53507192507',  
-                'PASSWORD':'0e114904',  
-                'HOST':'us-cdbr-east-06.cleardb.net',  
-                'PORT':'3306'  
-        })
-
-
-        if url.scheme == 'mysql':
-            DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
-except Exception:
-    sys.exc_info()
 
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  
+        'NAME': 'heroku_c81c246274beb9a',  
+        'USER':'b9b916d722048c',  
+        'PASSWORD':'6a68d3cf',  
+        'HOST':'us-cdbr-east-06.cleardb.net',  
+        'PORT':'3306'  
+    }
+}
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media/') 
 MEDIA_URL = '/media/'
