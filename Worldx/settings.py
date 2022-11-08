@@ -14,6 +14,7 @@ from pathlib import Path
 
 import os
 import django_heroku
+import dj_database_url
 
 
 
@@ -107,10 +108,10 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'heroku_4ba8791b5bec077',  
-        'USER':'b2ac752ce00134',  
-        'PASSWORD':'abf626fe',  
-        'HOST':'us-cdbr-east-06.cleardb.net',  
+        'NAME': 'teste',  
+        'USER':'admin',  
+        'PASSWORD':'TIMAO1910',  
+        'HOST':'worldx.c9gd5twwpbrl.us-east-1.rds.amazonaws.com',  
         'PORT':'3306'  
     }
 }
