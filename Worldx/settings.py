@@ -107,9 +107,9 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'heroku_f67f91646ed7bd2',  
-        'USER':'b434f4974b7e99',  
-        'PASSWORD':'efc6da04',  
+        'NAME': 'heroku_4ba8791b5bec077',  
+        'USER':'b2ac752ce00134',  
+        'PASSWORD':'abf626fe',  
         'HOST':'us-cdbr-east-06.cleardb.net',  
         'PORT':'3306'  
     }
