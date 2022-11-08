@@ -14,7 +14,7 @@ from pathlib import Path
 
 import os
 import django_heroku
-import dj_database_url
+
 
 
 
@@ -32,8 +32,7 @@ SECRET_KEY = 'django-insecure-!j!c9_b7+4&p2gm(qbcv#am$bv$l44p0z6x_!2nzz%pkc0n7qc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["https://web-production-3a34.up.railway.app"]
 
 # Application definition
 
@@ -177,3 +176,5 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 django_heroku.settings(locals())
+
+
