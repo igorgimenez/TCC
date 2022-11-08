@@ -1,1 +1,1 @@
-web: gunicorn Worldx.wsgi
+web: gunicorn Worldx.wsgi --log-file -
