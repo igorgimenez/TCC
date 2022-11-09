@@ -12,6 +12,7 @@ from galeria.models import Galeria, FotoGaleria
 from roteiros.models import Roteiro
 from django.db.models import Sum
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_protect, ensure_csrf_cookie
 
 
 
@@ -46,7 +47,8 @@ def cadastrar(request):
     return render(request,'cadastrar.html',context) 
 
 
-  
+@csrf_protect
+@ensure_csrf_cookie  
 def logar(request):
     if request.method == 'POST':
         
