@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 
 import os
-import django_heroku
+#import django_heroku
 
 
 
@@ -32,9 +32,11 @@ SECRET_KEY = 'django-insecure-!j!c9_b7+4&p2gm(qbcv#am$bv$l44p0z6x_!2nzz%pkc0n7qc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://web-production-3a34.up.railway.app']
+ALLOWED_HOSTS = ["*"]
 
-CSRF_TRUSTED_ORIGINS =['https://web-production-3a34.up.railway.app'] 
+CSRF_TRUSTED_ORIGINS =['https://web-production-3a34.up.railway.app','https://*.127.0.0.1'] 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -176,6 +178,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
 
 
