@@ -78,7 +78,7 @@
               <input type="hidden" name="v_id" id="v_id" required maxlength="100" value="{{ custo.v_id}}" />
 
                 <div class="divBtn">
-                  <button type="submit" class="btn btn-primary" >Atualizar</button>  
+                  <button type="submit" class="btn btn-primary" id="btn">Atualizar</button>  
                 </div>
                   
                
@@ -88,6 +88,25 @@
     
 </form>  
 
+
+<script type="text/javascript">  
+
+
+    var intervalId = window.setInterval(function(){
+        var  valor_input = document.getElementById("valor");
+        var obs_input = document.getElementById("obs");
+  
+  
+       if(valor_input.value.length > 0 && obs_input.value.length > 0){
+        document.getElementById("btn").disabled = false; 
+       }
+        else{
+            document.getElementById("btn").disabled = true;   
+        }
+        }, 1000);
+    
+        
+  </script>
 
 
   

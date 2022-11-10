@@ -85,7 +85,7 @@
               <input type="hidden" name="v_id" id="id_usuario" required maxlength="100" value="{{ roteiro.v_id}}" />
 
                 <div class="divBtn">
-                  <button type="submit" class="btn btn-primary" >Atualizar</button>  
+                  <button type="submit" class="btn btn-primary" id="btn">Atualizar</button>  
                 </div>
                   
                
@@ -96,7 +96,27 @@
 </form>  
 
 
+<script type="text/javascript">  
 
+
+    var intervalId = window.setInterval(function(){
+        var  dia_input = document.getElementById("id_dia");
+        var horaini_input = document.getElementById("id_horaini");
+        var  horafin_input = document.getElementById("id_horafin");
+        var lugar_input = document.getElementById("id_lugar");
+        var  acao_input = document.getElementById("id_acao");
+        
+  
+       if(dia_input.value.length > 0 && horaini_input.value.length > 4 && horafin_input.value.length > 4 && lugar_input.value.length > 0 && acao_input.value.length > 0){
+        document.getElementById("btn").disabled = false; 
+       }
+        else{
+            document.getElementById("btn").disabled = true;   
+        }
+        }, 1000);
+    
+        
+  </script>
   
 
 

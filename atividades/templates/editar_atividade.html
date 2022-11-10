@@ -94,7 +94,7 @@
               </div>
         
               <div class="col text-center">
-                <button type="submit" class="btn btn-primary" >Criar</button>  
+                <button type="submit" class="btn btn-primary" id="btn" >Atualizar</button>  
               </div>
                 
              
@@ -105,7 +105,27 @@
 
 
 
+<script type="text/javascript">  
 
+
+  var intervalId = window.setInterval(function(){
+      var  duracao_input = document.getElementById("durac");
+      var lugar_input = document.getElementById("lug");
+      var  obs_input = document.getElementById("obss");
+    
+      
+
+
+     if(duracao_input.value.length > 0 && lugar_input.value.length > 0 && obs_input.value.length > 0){
+      document.getElementById("btn").disabled = false; 
+     }
+      else{
+          document.getElementById("btn").disabled = true;   
+      }
+      }, 1000);
+  
+      
+</script>
 
 
 </body>  

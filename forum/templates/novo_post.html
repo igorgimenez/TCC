@@ -79,7 +79,7 @@
               </div> 
         
                 <div class="col text-center">
-                  <button type="submit" class="btn btn-primary" >Criar</button>  
+                  <button type="submit" class="btn btn-primary" id="btn">Criar</button>  
                 </div>
                   
                
@@ -89,10 +89,26 @@
 
     
 </form>  
+</body>  
 
-        
+<script type="text/javascript">  
+
+
+    var intervalId = window.setInterval(function(){
+        var  titulo_input = document.getElementById("titulo");
+        var texto_input = document.getElementById("texto");
+  
+  
+       if(titulo_input.value.length > 0 && texto_input.value.length > 0){
+        document.getElementById("btn").disabled = false; 
+       }
+        else{
+            document.getElementById("btn").disabled = true;   
+        }
+        }, 1000);
     
-    </body>  
+        
+</script>
 
 </body>
 </html>

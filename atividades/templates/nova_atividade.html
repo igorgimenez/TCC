@@ -81,7 +81,7 @@
             </div>
         
             <div class="mb-3">
-              <input class="form-control" type="file" name="img" >
+              <input class="form-control" type="file" name="img" id="img">
             </div>
             
               <div class="input-group mb-3">  
@@ -91,7 +91,7 @@
               </div> 
         
               <div class="col text-center">
-                <button type="submit" class="btn btn-primary" >Criar</button>  
+                <button type="submit" class="btn btn-primary" id="btn" >Criar</button>  
               </div>
                 
              
@@ -100,7 +100,27 @@
         </div> 
 </form> 
 
+<script type="text/javascript">  
 
+
+  var intervalId = window.setInterval(function(){
+      var  duracao_input = document.getElementById("durac");
+      var lugar_input = document.getElementById("lug");
+      var  obs_input = document.getElementById("obss");
+      var  img_input = document.getElementById("img");
+      
+
+
+     if(duracao_input.value.length > 0 && lugar_input.value.length > 0 && obs_input.value.length > 0 && img_input.value.length > 0){
+      document.getElementById("btn").disabled = false; 
+     }
+      else{
+          document.getElementById("btn").disabled = true;   
+      }
+      }, 1000);
+  
+      
+</script>
 
 
 

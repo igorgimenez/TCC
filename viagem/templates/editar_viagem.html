@@ -77,7 +77,7 @@
         
         
                 <div class="divBtn"> 
-                  <button type="submit" class="btn btn-primary" >Atualizar</button>  
+                  <button type="submit" class="btn btn-primary" id="btn" >Atualizar</button>  
                 </div>
                   
                
@@ -87,7 +87,24 @@
     
 </form>  
 
+<script type="text/javascript">  
 
+
+    var intervalId = window.setInterval(function(){
+        var  duracao_input = document.getElementById("id_duracao");
+        var lugar_input = document.getElementById("id_lugar");
+  
+  
+       if(duracao_input.value.length > 0 && lugar_input.value.length > 0){
+        document.getElementById("btn").disabled = false; 
+       }
+        else{
+            document.getElementById("btn").disabled = true;   
+        }
+        }, 1000);
+    
+        
+  </script>
 
   
 

@@ -83,7 +83,7 @@
                   </div>
             
                   <div class="col text-center">
-                    <button type="submit" class="btn btn-primary" >Atualizar</button>  
+                    <button type="submit" class="btn btn-primary" id="btn">Atualizar</button>  
                   </div>
                     
                  
@@ -93,7 +93,23 @@
     </form> 
 
 
+    <script type="text/javascript">  
 
+
+      var intervalId = window.setInterval(function(){
+          var  nome_input = document.getElementById("nom");
+      
+    
+         if(nome_input.value.length > 0){
+          document.getElementById("btn").disabled = false; 
+         }
+          else{
+              document.getElementById("btn").disabled = true;   
+          }
+          }, 1000);
+      
+          
+    </script>
 
 
 

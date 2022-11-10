@@ -144,5 +144,25 @@
     
 
 
-</body>  
+</body>
+
+<script type="text/javascript">  
+
+
+    var intervalId = window.setInterval(function(){
+        var  comentario_input = document.getElementById("texto");
+       
+  
+  
+       if(comentario_input.value.length > 0){
+        document.getElementById("post").disabled = false; 
+       }
+        else{
+            document.getElementById("post").disabled = true;   
+        }
+        }, 1000);
+    
+        
+</script>
+
 </html>  
