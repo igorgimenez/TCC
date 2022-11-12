@@ -79,7 +79,7 @@
       </div>
 
       <div class="campo">
-        <input type="text" class="form-control" name="tel"  id="tel" value="{{ usuario.telefone }}" placeholder="Telefone" oninput="mascara(this, 'tel')"  autocomplete="off" name="customer['tel']" style="border-radius:25px ;" >
+        <input type="text" class="form-control" name="telefone"  id="telefone" value="{{ usuario.telefone }}" placeholder="Telefone" oninput="mascara(this, 'tel')"  autocomplete="off" name="customer['tel']" style="border-radius:25px ;" >
       </div>
 
       <div class="campo">
@@ -181,7 +181,7 @@ function mascara(i,t){
 
 var intervalId = window.setInterval(function(){
     var  nome_input = document.getElementById("nome");
-    var tel_input = document.getElementById("tel");
+    var tel_input = document.getElementById("telefone");
     var data_nascimento_input = document.getElementById("data_nascimento");
     var email_input = document.getElementById("email");
     var nome=0;
