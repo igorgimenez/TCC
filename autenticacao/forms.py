@@ -27,11 +27,4 @@ class AutenticacaoForm(forms.Form):
         
     )
 
-def clean(self):
-    cleaned_data = super.clean()
 
-    p1=cleaned_data.get('senha')
-    p2=cleaned_data.get('confirma')
-
-    if p1 != p2:
-        raise forms.ValidationError("Senhas divergentes")
