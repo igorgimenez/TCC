@@ -76,8 +76,9 @@ def logar(request):
         return render(request, 'login.html', {'error': error_message})
 
 def logout(request):
-    del request.session['user']
-    return render(request,'login.html')
-
-
- 
+    if 'user' not in request.session:
+        del request.user.email
+        return render(request,'login.html')  
+    else:
+        del request.session['user']
+        return render(request,'login.html') 
