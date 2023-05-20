@@ -17,6 +17,7 @@ def nova_viagem(request):
 
 
 def criar(request):
+    
     form = ViagemForm()
     if request.method == "POST":  
         duracao = request.POST.get('duracao')
@@ -32,7 +33,7 @@ def criar(request):
 
 def exibir(request):  
     if 'user' not in request.session:
-        sessao = request.user.email
+        sessao = request.user.username
         viagens = Viagem.objects.filter(usuario=sessao)
         return render(request,"viagens.html",{'viagens':viagens})
     else:
