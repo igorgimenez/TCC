@@ -82,13 +82,13 @@
             {% if request.session.user|length > 0 %}
               <div class="input-group mb-3">  
                 <div class="col-mb-3">  
-                  <input  type="text"  name="usuario" value="{{ request.session.user }}">
+                  <input  type="hidden"  name="usuario" value="{{ request.session.user }}">
                 </div>  
               </div> 
             {% else %}
             <div class="input-group mb-3">  
               <div class="col-mb-3">  
-                <input  type="text"  name="usuario" value="{{ user.username }}">
+                <input  type="hidden"  name="usuario" value="{{ user.username }}">
               </div>  
             </div> 
             {% endif %}
