@@ -29,8 +29,11 @@ urlpatterns = [
     path('', include('custos.urls')),
     path('', include('usuario.urls')),
     path('', include('galeria.urls')),
+    path('', include('chat.urls')),
+    path('', include('comunidade.urls')),
     path('', include('administracao.urls')),
     path('', include('landing_page.urls')),
+    path('', include('allauth.urls')),
 
 ]
 if settings.DEBUG:

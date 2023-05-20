@@ -12,7 +12,13 @@ from django.db.models import Sum
 from django.db.models.functions import Coalesce
 
 def home(request):  
-    sessao = request.session['user']
+    if 'user' not in request.session:
+          sessao = request.user.email
+    else:
+        sessao = request.session['user']
+
+    
+
     viagens = Viagem.objects.filter(usuario=sessao)
 
     filtro_viagem = Viagem.objects.only('id').filter(usuario=sessao)
@@ -30,21 +36,23 @@ def home(request):
     fotogaleria =  FotoGaleria.objects.filter(v_gal__in=filtro_galeria)
 
     roteiros = Roteiro.objects.filter(v_id__in=filtro_viagem)
-    
+            
     custo = Custo.objects.filter(v_id__in=filtro_viagem)
-     
+            
     custo_total = custo.aggregate(sum=Sum('valor'))
-    
+            
 
     context  = {
-        'object_list': custo,
-        'custo_total': custo_total,
-        'viagens':viagens,
-        'forum':forum,
-        'comentario':comentario,
-        'atividades':atividades,
-        'galeria':galeria,
-        'fotogaleria':fotogaleria,
-        'roteiros':roteiros,
-    }
+                'object_list': custo,
+                'custo_total': custo_total,
+                'viagens':viagens,
+                'forum':forum,
+                'comentario':comentario,
+                'atividades':atividades,
+                'galeria':galeria,
+                'fotogaleria':fotogaleria,
+                'roteiros':roteiros,
+            }
     return render(request,"home.html",context)  
+
+

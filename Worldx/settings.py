@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'viagem',
     'home',
+    'chat',
+    'comunidade',
     'atividades',
     'roteiros',
     'autenticacao',
@@ -56,12 +58,22 @@ INSTALLED_APPS = [
     'landing_page',
     'administracao',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
 ]
+
+SITE_ID = 1
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -86,6 +98,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -104,7 +118,8 @@ CHANNEL_LAYERS = {
     }
 }
 
-
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '782393826516-jdnn45gvk5uddcddptfdq3nk6hr4jko6.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -168,6 +183,22 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_ROOT =  os.path.join(BASE_DIR, 'static/') 
 
+AUTHENTICATION_BACKENDS = [
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE' : [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type':'online',
+        }
+    }
+}
+    
 
 
 STATICFILES_DIRS = [

@@ -4,10 +4,13 @@ from forum.forms import ForumForm, ComentarioForm, ReportarComentarioForm, Repor
 from forum.models import  Comentario, Forum, ReportarComentario, ReportarTopico
 from django.contrib import messages
 from datetime import datetime
+from forum.filters import ForumFilter
 
 def exibir(request):  
     forum = Forum.objects.all().filter(status=1)
-    return render(request,"forum.html",{'forum':forum})  
+    forum_filter = ForumFilter(request.GET, queryset=forum)
+    return render(request, 'forum.html', {'filter': forum_filter})
+    
 
 
 def novo_topico(request):  

@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link "  style="color:white ; font-weight: bold;" href="#">Comunidade</a>
+                        <a class="nav-link "  style="color:white ; font-weight: bold;" href="/comunidade">Comunidade</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link "  style="color:white ; font-weight: bold;" href="/viagens">Viagens</a>
@@ -45,9 +45,15 @@
                     <li class="nav-item">
                         <a class="nav-link " style="color:white ; font-weight: bold;" href="/usuario">Perfil</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" style="color:white ; font-weight: bold;" href="/logout">{{ request.session.user }}, Sair</a>
-                    </li>
+                    {% if request.session.user|length > 0 %}
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:white ; font-weight: bold;" href="/logout">{{ request.session.user }}, Sair</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:white ; font-weight: bold;" href="/logout">{{ user.username }}, Sair</a>
+                        </li>
+                        {% endif %}
                 </ul>
             </div>
         </div>
@@ -131,7 +137,11 @@
                             <h4 style="color:white">Adicione um comentário</h4>
                             <textarea name="comentario"  id="texto" msg cols="30" rows="5" class="form-control"></textarea>
                         </div>
+                        {% if request.session.user|length > 0 %}
                         <input  type="hidden"  name="autor" value="{{ request.session.user }}">
+                        {% else %}
+                        <input  type="hidden"  name="autor" value="{{ user.username }}">
+                        {% endif %}
                         <input type="hidden" name="post_id" id="post_id" value="{{forum.id}}"  > 
                         <div class="form-group mt-4">
                             <button type="submit" id="post" class="btn btn-success">Comentar</button>
@@ -141,7 +151,7 @@
             </div>
         </div>
     </section>
-    
+
 
 
 </body>

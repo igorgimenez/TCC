@@ -37,7 +37,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link " id="viagem" style="color:white ; font-weight: bold;" href="#">Comunidade</a>
+                    <a class="nav-link " id="viagem" style="color:white ; font-weight: bold;" href="/comunidade">Comunidade</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " id="viagem" style="color:white ; font-weight: bold;" href="/viagens">Viagens</a>
@@ -48,9 +48,15 @@
                 <li class="nav-item">
                     <a class="nav-link " id="viagem" style="color:white ; font-weight: bold;" href="/usuario">Perfil</a>
                 </li>
+                {% if request.session.user|length > 0 %}
                 <li class="nav-item">
                     <a class="nav-link" style="color:white ; font-weight: bold;" href="/logout">{{ request.session.user }}, Sair</a>
                 </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" style="color:white ; font-weight: bold;" href="/logout">{{ user.username }}, Sair</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>
@@ -73,12 +79,19 @@
               <input type="text" class="form-control" name="lugar"  id="lug" placeholder="Lugar"  style="border-radius:25px ;">
             </div>
 
+            {% if request.session.user|length > 0 %}
               <div class="input-group mb-3">  
                 <div class="col-mb-3">  
-                  <input  type="hidden"  name="usuario" value="{{ request.session.user }}">
+                  <input  type="text"  name="usuario" value="{{ request.session.user }}">
                 </div>  
               </div> 
-
+            {% else %}
+            <div class="input-group mb-3">  
+              <div class="col-mb-3">  
+                <input  type="text"  name="usuario" value="{{ user.username }}">
+              </div>  
+            </div> 
+            {% endif %}
 
               <div class="divBtn">
                 <button type="submit" class="btn btn-primary" id="btn">Criar</button>

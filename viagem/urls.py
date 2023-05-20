@@ -10,8 +10,11 @@ from galeria.views import galerias
 urlpatterns = [  
     path('admin/', admin.site.urls),  
     path('nova_viagem', views.nova_viagem),  
+    
     path('criarviagem', views.criar),
+    
     path('viagens',views.exibir),  
+     
     path('editarviagem/<int:id>', views.editar),  
     path('update/<int:id>', views.update),  
     path('excluirviagem/<int:id>', views.excluir),  

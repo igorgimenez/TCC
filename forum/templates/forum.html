@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link "  style="color:white ; font-weight: bold;" href="#">Comunidade</a>
+                            <a class="nav-link "  style="color:white ; font-weight: bold;" href="/comunidade">Comunidade</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link "  style="color:white ; font-weight: bold;" href="/viagens">Viagens</a>
@@ -44,14 +44,36 @@
                         <li class="nav-item">
                             <a class="nav-link " style="color:white ; font-weight: bold;" href="/usuario">Perfil</a>
                         </li>
+                        {% if request.session.user|length > 0 %}
                         <li class="nav-item">
                             <a class="nav-link" style="color:white ; font-weight: bold;" href="/logout">{{ request.session.user }}, Sair</a>
                         </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:white ; font-weight: bold;" href="/logout">{{ user.username }}, Sair</a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
         </nav>
-    
+
+        {% load widget_tweaks %}
+
+        <form method="get">
+          <div class="row" style="margin-top: 10px; margin-bottom: 20px;">
+            <div class="row justify-content-start">
+              <div class="col-md-1"><h4 style="color:white;">Titulo:</h4></div>
+              <div class="col-2">
+                {{ filter.form.titulo.label_tag }}
+                {% render_field filter.form.titulo__icontains class="form-control form-control-sm" %}
+              </div>
+              <div class="col-md-1">  <button type="submit"  class="btn btn-primary">Buscar</button></div>
+            </div>
+          </div>
+          
+          </form>
+            
     
         {% for msg in messages %}
 
@@ -74,7 +96,7 @@
         </tr>  
         </thead>  
         <tbody>  
-    {% for forum in forum %}  
+    {% for forum in filter.qs %}  
         <tr>  
             <td>{{ forum.titulo }} </td>  
             <td>{{ forum.autor }}</td> 

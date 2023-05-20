@@ -4,6 +4,7 @@ from viagem.models import  Viagem
 from django.contrib import messages
 from datetime import datetime
 
+
 def nova_viagem(request):  
 
     context ={}
@@ -12,11 +13,10 @@ def nova_viagem(request):
   
     context['form']= form
     return render(request, "criar_viagem.html", context)
-    
+
+
 
 def criar(request):
-
-    
     form = ViagemForm()
     if request.method == "POST":  
         duracao = request.POST.get('duracao')
@@ -30,12 +30,17 @@ def criar(request):
     
 
 
-
 def exibir(request):  
+    if 'user' not in request.session:
+        sessao = request.user.email
+        viagens = Viagem.objects.filter(usuario=sessao)
+        return render(request,"viagens.html",{'viagens':viagens})
+    else:
+        sessao = request.session['user']
+        viagens = Viagem.objects.filter(usuario=sessao)
+        return render(request,"viagens.html",{'viagens':viagens}) 
+       
     
-    sessao = request.session['user']
-    viagens = Viagem.objects.filter(usuario=sessao)
-    return render(request,"viagens.html",{'viagens':viagens})  
 
 
 

@@ -2,11 +2,35 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from forum.models import  ReportarTopico, ReportarComentario ,Forum, Comentario
 from forum.forms import ReportarTopicoForm
 from django.contrib import messages
-
-
+from viagem.models import  Viagem  
+from atividades.models import  Atividade
+from galeria.models import  Galeria, FotoGaleria
+from custos.models import  Custo
+from roteiros.models import  Roteiro
+from django.db.models import Sum
 
 def adm(request):
-    return render(request,"adm.html") 
+        viagens = Viagem.objects.all()
+        forum = Forum.objects.all()
+        comentario = Comentario.objects.all()
+        atividades = Atividade.objects.all()
+        galeria = Galeria.objects.all()
+        fotogaleria =  FotoGaleria.objects.all()
+        roteiros = Roteiro.objects.all()   
+        custo = Custo.objects.all()       
+        custo_total = custo.aggregate(sum=Sum('valor'))
+        context  = {
+                    'object_list': custo,
+                    'custo_total': custo_total,
+                    'viagens':viagens,
+                    'forum':forum,
+                    'comentario':comentario,
+                    'atividades':atividades,
+                    'galeria':galeria,
+                    'fotogaleria':fotogaleria,
+                    'roteiros':roteiros,
+                }
+        return render(request,"adm.html",context)  
 
 def reportados(request):  
 
@@ -44,3 +68,5 @@ def ignorar_comentario(request, id):
     ReportarComentario.objects.all().filter(id_comentario = id).update(status='0')
     messages.success(request, "Report de comentário ignorado com sucesso")
     return redirect("/reports") 
+
+   
