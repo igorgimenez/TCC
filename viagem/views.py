@@ -33,7 +33,7 @@ def criar(request):
 
 def exibir(request):  
     if 'user' not in request.session:
-        sessao = request.user.username
+        sessao = request.user.email
         viagens = Viagem.objects.filter(usuario=sessao)
         return render(request,"viagens.html",{'viagens':viagens})
     else:
